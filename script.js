@@ -6,6 +6,7 @@ let maxTemp = document.querySelector(".temp-max");
 // let sunset = document.querySelector(".sunset");
 let weatherDescription = document.querySelector(".weather-description");
 let humidity = document.querySelector(".humidity");
+let date = document.querySelector(".date");
 
 let currentImg;
 const imgContainer = document.querySelector(".img");
@@ -42,22 +43,47 @@ const weatherAPI = function () {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      mainTemp.textContent = Math.round((data.main.temp - 273.15) * 1.8 + 32);
-      feelsLike.textContent = Math.round(
+      mainTemp.textContent = `${Math.round(
+        (data.main.temp - 273.15) * 1.8 + 32
+      )}°`;
+      feelsLike.textContent = `feels like ${Math.round(
         (data.main.feels_like - 273.15) * 1.8 + 32
-      );
-      minTemp.textContent = Math.round(
+      )}°`;
+      minTemp.textContent = `min temp ${Math.round(
         (data.main.temp_min - 273.15) * 1.8 + 32
-      );
-      maxTemp.textContent = Math.round(
+      )}°`;
+      maxTemp.textContent = `max temp ${Math.round(
         (data.main.temp_max - 273.15) * 1.8 + 32
-      );
+      )}°`;
       weatherDescription.textContent = data.weather[0].description;
       humidity.textContent = `${data.main.humidity}%`;
       if (data.weather[0].description === "clear sky") {
-        let img = createImage("img/img-1.jpg");
+        let img = createImage("img/img-1.webp");
+      } else if (data.weather[0].description === "few clouds") {
+        let img = createImage("img/img-2.webp");
+      } else if (data.weather[0].description === "scattered clouds") {
+        let img = createImage("img/img-3.jpeg");
+      } else if (data.weather[0].description === "broken clouds") {
+        let img = createImage("img/img-4.jpeg");
+      } else if (data.weather[0].description === "shower rain") {
+        let img = createImage("img/img-5.jpeg");
+      } else if (data.weather[0].description === "rain") {
+        let img = createImage("img/img-6.jpeg");
+      } else if (data.weather[0].description === "thunderstorm") {
+        let img = createImage("img/img-7.webp");
+      } else if (data.weather[0].description === "snow") {
+        let img = createImage("img/img-8.jpeg");
+      } else if (data.weather[0].description === "mist") {
+        let img = createImage("img/img-9.jpeg");
       }
     })
+    .then(function () {
+      const d = new Date();
+      d.getTime();
+      date.textContent = `${
+        d.getMonth() + 1
+      }/${d.getDate()}/${d.getFullYear()}`;
+    });
   // .then((test) => {
   //   console.log('g');
   // })
