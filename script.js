@@ -55,25 +55,25 @@ const weatherAPI = function () {
       maxTemp.textContent = `max temp ${Math.round(
         (data.main.temp_max - 273.15) * 1.8 + 32
       )}°`;
-      weatherDescription.textContent = data.weather[0].description;
+      weatherDescription.textContent = data.weather[0].main;
       humidity.textContent = `${data.main.humidity}%`;
-      if (data.weather[0].description === "clear sky") {
+      if (data.weather[0].main === "") {
         let img = createImage("img/img-1.webp");
-      } else if (data.weather[0].description === "few clouds") {
+      } else if (data.weather[0].main === "Clouds") {
         let img = createImage("img/img-2.webp");
-      } else if (data.weather[0].description === "scattered clouds") {
+      } else if (data.weather[0].main === "scattered clouds") {
         let img = createImage("img/img-3.jpeg");
-      } else if (data.weather[0].description === "broken clouds") {
+      } else if (data.weather[0].main === "broken clouds") {
         let img = createImage("img/img-4.jpeg");
-      } else if (data.weather[0].description === "shower rain") {
+      } else if (data.weather[0].main === "shower rain") {
         let img = createImage("img/img-5.jpeg");
-      } else if (data.weather[0].description === "rain") {
+      } else if (data.weather[0].main === "rain") {
         let img = createImage("img/img-6.jpeg");
-      } else if (data.weather[0].description === "thunderstorm") {
+      } else if (data.weather[0].main === "thunderstorm") {
         let img = createImage("img/img-7.webp");
-      } else if (data.weather[0].description === "snow") {
+      } else if (data.weather[0].main === "snow") {
         let img = createImage("img/img-8.jpeg");
-      } else if (data.weather[0].description === "mist") {
+      } else if (data.weather[0].main === "mist") {
         let img = createImage("img/img-9.jpeg");
       }
     })
